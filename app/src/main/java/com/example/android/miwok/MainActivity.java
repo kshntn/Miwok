@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
-        TextView numbers=findViewById(R.id.numbers);
+        TextView numbers = findViewById(R.id.numbers);
         numbers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        TextView Colors=findViewById(R.id.colors);
+        TextView Colors = findViewById(R.id.colors);
         Colors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        TextView Family=findViewById(R.id.family);
+        TextView Family = findViewById(R.id.family);
         Family.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        TextView Phrases=findViewById(R.id.phrases);
+        TextView Phrases = findViewById(R.id.phrases);
         Phrases.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
