@@ -1,6 +1,5 @@
 package com.example.android.miwok;
 
-import android.content.Context;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +11,12 @@ import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
     private MediaPlayer myPlayer;
+    private MediaPlayer.OnCompletionListener mCompletionListener=new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMediaPlayer();
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +45,35 @@ public class NumbersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Word pos = words.get(position);
+                releaseMediaPlayer();
                 myPlayer = MediaPlayer.create(NumbersActivity.this, pos.getmAudioId());
                 myPlayer.start();
+
+                myPlayer.setOnCompletionListener(mCompletionListener);
             }
         });
-
-
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+    /**
+     * Clean up the media player by releasing its resources.
+     */
+    private void releaseMediaPlayer() {
+        // If the media player is not null, then it may be currently playing a sound.
+        if (myPlayer != null) {
+            // Regardless of the current state of the media player, release its resources
+            // because we no longer need it.
+            myPlayer.release();
+            // Set the media player back to null. For our code, we've decided that
+            // setting the media player to null is an easy way to tell that the media player
+            // is not configured to play an audio file at the moment.
+            myPlayer = null;
+        }
+    }
+
 }
